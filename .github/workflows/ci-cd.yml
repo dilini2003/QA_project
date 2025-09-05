@@ -22,12 +22,11 @@ jobs:
           java-version: '17'
 
       - name: Make mvnw executable
-        run: chmod +x mvnw
-        working-directory: ./backend
+        run: chmod +x backend/mvnw
 
-      - name: Build backend with Maven
-        working-directory: ./backend
+      - name: Build Backend (skip tests)
         run: ./mvnw clean install -DskipTests
+        working-directory: backend
 
       - name: Run backend unit tests
         working-directory: ./backend
