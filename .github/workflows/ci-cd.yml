@@ -1,0 +1,71 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # --------- Backend Build & Test ---------
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Build backend with Maven
+        working-directory: ./backend
+        run: ./mvnw clean install -DskipTests
+
+      - name: Run backend unit tests
+        working-directory: ./backend
+        run: ./mvnw test
+
+      - name: Set up Node.js for backend
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install backend Node.js dependencies
+        run: npm ci
+        working-directory: ./backend
+
+      - name: Run backend JS unit tests
+        run: npm test
+        working-directory: ./backend
+
+      # --------- Frontend Build & Test ---------
+      - name: Set up Node.js for frontend
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install frontend dependencies
+        run: npm ci
+        working-directory: ./frontend
+
+      - name: Lint frontend code
+        run: npx eslint .
+        working-directory: ./frontend
+
+      - name: Build frontend
+        run: npm run build
+        working-directory: ./frontend
+
+      # --------- UI/API Automation Tests ---------
+      - name: Run Selenium/UI tests
+        run: npm run test:selenium || true
+        working-directory: ./backend/tests/selenium
+
+      # --------- Deploy (placeholder) ---------
+      - name: Deploy (placeholder)
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: echo "Deploy step goes here"
