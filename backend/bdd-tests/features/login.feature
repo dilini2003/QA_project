@@ -4,11 +4,11 @@ Feature: User Login
   So that I can access my dashboard
 
   Scenario: Successful login
-    Given I am a registered user with email "dilini@example.com" and password "12345"
-    When I send a login request with email "dilini@example.com" and password "12345"
+    Given I am a registered user with email "dilini@example.com" and password "12345678"
+    When I send a login request with email "dilini@example.com" and password "12345678"
     Then I should receive a success message
 
   Scenario: Invalid login
-    Given I am a registered user with email "dilini@example.com" and password "12345"
+    Given I am a registered user with email "dilini@example.com" and password "12345678"
     When I send a login request with email "dilini@example.com" and password "wrongpass"
     Then I should see an error message "Invalid Credentials"

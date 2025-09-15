@@ -1,12 +1,13 @@
 import { useState } from "react";
 import Login from "./Login";
 import Signup from "./Signup";
+import "./App.css";
 
 function App() {
   const [showLogin, setShowLogin] = useState(true);
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="app">
       <h1>User Authentication</h1>
       <div>
         <button onClick={() => setShowLogin(true)}>Login</button>

@@ -28,7 +28,7 @@ class UserServiceTest {
         User user = new User();
         user.setUsername("dilini");
         user.setEmail("dilini@example.com");
-        user.setPassword("12345");
+        user.setPassword("12345678");
 
         when(repo.findByEmail("dilini@example.com")).thenReturn(Optional.empty());
         when(repo.save(user)).thenReturn(user);
@@ -53,11 +53,11 @@ class UserServiceTest {
     void testLoginSuccess() {
         User user = new User();
         user.setEmail("dilini@example.com");
-        user.setPassword("12345");
+        user.setPassword("12345678");
 
         when(repo.findByEmail("dilini@example.com")).thenReturn(Optional.of(user));
 
-        User result = service.login("dilini@example.com", "12345");
+        User result = service.login("dilini@example.com", "12345678");
 
         assertEquals("dilini@example.com", result.getEmail());
     }
@@ -66,7 +66,7 @@ class UserServiceTest {
     void testLoginFailInvalidPassword() {
         User user = new User();
         user.setEmail("dilini@example.com");
-        user.setPassword("12345");
+        user.setPassword("12345678");
 
         when(repo.findByEmail("dilini@example.com")).thenReturn(Optional.of(user));
 

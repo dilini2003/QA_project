@@ -6,10 +6,9 @@ import fs from "fs";
 (async function signupTests() {
   // ChromeOptions to suppress unwanted logs
   const options = new chrome.Options();
-  options.addArguments("--log-level=3");       // Only fatal errors
-  options.addArguments("--silent");            // Extra suppression
-  options.excludeSwitches(["enable-logging"]); // Removes "All log messages before absl..." etc.
-
+  options.addArguments("--log-level=3");  
+  options.addArguments("--silent");        
+  options.excludeSwitches(["enable-logging"]);
   const driver = await new Builder()
     .forBrowser("chrome")
     .setChromeOptions(options)
@@ -30,7 +29,6 @@ import fs from "fs";
     await driver.findElement(By.css("button[type='submit']")).click();
 
     try {
-      // After signup, frontend should redirect to /login
       await driver.wait(until.urlContains("/"), 18000);
       console.log(chalk.green("✅ Signup successful test passed"));
     } catch {

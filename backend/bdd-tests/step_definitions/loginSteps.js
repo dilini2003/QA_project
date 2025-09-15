@@ -29,11 +29,13 @@ When('I send a login request with email {string} and password {string}', async f
 Then('I should receive a success message', function () {
   if (!this.response) throw new Error("No response received");
   expect(this.response.status).to.equal(200);
-  expect(this.response.data).to.contain("Login Successful");
+  // Check for message property in response data
+  expect(this.response.data.message || this.response.data).to.contain("Login Successful");
 });
 
 Then('I should see an error message {string}', function (message) {
   if (!this.response) throw new Error("No response received");
   expect(this.response.status).to.equal(401);
-  expect(this.response.data).to.equal(message);
+  // Check for message property in response data
+  expect(this.response.data.message || this.response.data).to.equal(message);
 });

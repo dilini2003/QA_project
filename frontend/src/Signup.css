@@ -1,0 +1,56 @@
+/* Signup.css */
+.Signup {
+  margin-top: 20px;
+  padding: 25px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  display: inline-block;
+  min-width: 320px;
+}
+
+.Signup h2 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.Signup .input {
+  width: 90%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1.5px solid #dcdfe6;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border 0.3s ease;
+}
+
+.Signup .input:focus {
+  border-color: #4a90e2;
+  outline: none;
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.3);
+}
+
+.Signup button {
+  width: 95%;
+  padding: 12px;
+  background: #4a90e2;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background 0.3s ease;
+}
+
+.Signup button:hover {
+  background: #357ab8;
+}
+
+.Signup p {
+  margin-top: 15px;
+  font-size: 0.95rem;
+  color: #333;
+  font-weight: 500;
+}

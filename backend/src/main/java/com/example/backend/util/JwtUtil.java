@@ -22,4 +22,8 @@ public class JwtUtil {
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
     }
+
+    public static Key getKey() {
+        return key;
+    }
 }

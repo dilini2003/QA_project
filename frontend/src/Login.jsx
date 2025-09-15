@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import "./Login.css";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -28,15 +29,15 @@ function Login() {
   };
 
   return (
-    <div style={{ marginTop: "20px" }}>
+    <div className="Login">
       <h2>Login</h2>
-      <input
+      <input className="input"
         type="email"
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       /><br /><br />
-      <input
+      <input className="input"
         type="password"
         placeholder="Password"
         value={password}

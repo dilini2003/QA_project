@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import "./Signup.css";
 
 function Signup() {
   const [username, setUsername] = useState("");
@@ -9,14 +10,14 @@ function Signup() {
 
   const handleSignup = async () => {
     if (!username || !email || !password) {
-    setMessage("All fields are required!");
-    return;
-  }
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    setMessage("Invalid email format!");
-    return;
-  }
+      setMessage("All fields are required!");
+      return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setMessage("Invalid email format!");
+      return;
+    }
     try {
       const res = await axios.post("http://localhost:8080/api/auth/signup", {
         username,
@@ -32,27 +33,41 @@ function Signup() {
   };
 
   return (
-    <div style={{ marginTop: "20px" }}>
+    <div className="Signup">
       <h2>Signup</h2>
-      <input 
+      <input
+        name="username"
+        className="input"
         type="text"
         placeholder="Username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
-      /><br /><br />
+      />
+      <br />
+      <br />
       <input
+        name="email"
+        className="input"
         type="email"
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-      /><br /><br />
+      />
+      <br />
+      <br />
       <input
+        name="password"
+        className="input"
         type="password"
         placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-      /><br /><br />
-      <button onClick={handleSignup}>Signup</button>
+      />
+      <br />
+      <br />
+      <button type="submit" onClick={handleSignup}>
+        Signup
+      </button>
       <p>{message}</p>
     </div>
   );
